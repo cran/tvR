@@ -73,7 +73,7 @@ plot(xproc2, main="TVL1.PrimalDual")
 
 }
 \references{
-Rudin et al. (1992) \emph{Nonlinear total variation based noise removal algorithms.} Physica D. Vol.60:259-268.
+\insertRef{rudin_nonlinear_1992}{tvR}
 
-Chambolle, A. and Pock, T. (2010) \emph{A first-order primal-dual algorithm for convex problems with applications to imaging.} \href{https://hal.archives-ouvertes.fr/hal-00490826}{HAL Technical Report}
+\insertRef{chambolle_first-order_2011}{tvR}
 }

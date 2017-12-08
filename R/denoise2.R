@@ -52,8 +52,11 @@
 #' plot(xproc1, main="TVL2.FiniteDifference")
 #' plot(xproc2, main="TVL1.PrimalDual")
 #'
-#' @references Rudin et al. (1992) \emph{Nonlinear total variation based noise removal algorithms.} Physica D. Vol.60:259-268.
-#' @references Chambolle, A. and Pock, T. (2010) \emph{A first-order primal-dual algorithm for convex problems with applications to imaging.} \href{https://hal.archives-ouvertes.fr/hal-00490826}{HAL Technical Report}
+#' @references
+#' \insertRef{rudin_nonlinear_1992}{tvR}
+#'
+#' \insertRef{chambolle_first-order_2011}{tvR}
+#'
 #' @export
 denoise2 <- function(image, lambda=1.0, niter=100, method=c("TVL1.PrimalDual","TVL2.PrimalDual","TVL2.FiniteDifference")){
   ## Check Data, Lambda, niter

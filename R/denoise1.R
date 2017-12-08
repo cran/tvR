@@ -45,8 +45,11 @@
 #' pt.cex = c(1, NA, NA), inset = 0.05)
 #'
 #'
-#' @references Rudin et al. (1992) \emph{Nonlinear total variation based noise removal algorithms.} Physica D. Vol.60:259-268.
-#' @references Selesnick et al (2015) \emph{Convex 1-D total variation denoising with non-convex regularization.} IEEE Signal Processing Letters, Vol.22(2):141-144.
+#' @references
+#' \insertRef{rudin_nonlinear_1992}{tvR}
+#'
+#' \insertRef{selesnick_convex_2015}{tvR}
+#'
 #' @export
 denoise1 <- function(signal, lambda=1.0, niter=100, method=c("TVL2.IC","TVL2.MM")){
   ## Check Data, Lambda, niter

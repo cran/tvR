@@ -3,6 +3,7 @@
 export(denoise1)
 export(denoise2)
 import(Matrix)
+import(Rdpack)
 import(imager)
 importFrom(Rcpp,evalCpp)
 useDynLib(tvR)
