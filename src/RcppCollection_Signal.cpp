@@ -6,7 +6,7 @@ using namespace Rcpp;
 using namespace arma;
 
 // auxiliary functions for 1d signal
-arma::rowvec rcpp_diff(arma::rowvec& x){
+arma::rowvec rcpp_diff(arma::rowvec x){
   const int n = x.n_elem;
   arma::rowvec y(n-1,fill::zeros);
   for (int i=0;i<(n-1);i++){
@@ -14,7 +14,7 @@ arma::rowvec rcpp_diff(arma::rowvec& x){
   }
   return(y);
 }
-arma::rowvec Dtz(arma::rowvec& z, const int N){
+arma::rowvec Dtz(arma::rowvec z, const int N){
   arma::rowvec output(N,fill::zeros);
   arma::rowvec diffz = rcpp_diff(z);
 
@@ -28,8 +28,9 @@ arma::rowvec Dtz(arma::rowvec& z, const int N){
 
 // 1. TVL2.IC
 // [[Rcpp::export]]
-arma::rowvec signal_tvl2_IC(arma::rowvec& y, const double lambda, const int maxiter){
+arma::rowvec signal_tvl2_IC(arma::rowvec ytmp, const double lambda, const int maxiter){
   // 1-1. setup
+  arma::rowvec y = ytmp;
   const int N = y.n_elem;
   arma::rowvec x(N,fill::zeros);
   arma::rowvec z(N-1,fill::zeros); // imaxiterialize
@@ -55,8 +56,9 @@ arma::rowvec signal_tvl2_IC(arma::rowvec& y, const double lambda, const int maxi
 
 // 2. TVL2.MM
 // [[Rcpp::export]]
-arma::colvec signal_tvl2_MM(arma::colvec& y, const double lambda, const int maxiter){
+arma::colvec signal_tvl2_MM(arma::colvec ytmp, const double lambda, const int maxiter){
   // 2-1. set up
+  arma::colvec y = ytmp;
   const int N = y.n_elem;
   arma::mat D(N-1,N,fill::zeros);
   for (int i=0;i<(N-1);i++){

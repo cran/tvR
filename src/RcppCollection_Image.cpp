@@ -9,8 +9,9 @@ using namespace arma;
  * Image 1 : TV-L2 using Finite Difference
  */
 // [[Rcpp::export]]
-arma::mat image_tvl2_FD(arma::mat& u0, const double lambda, const double niter){
+arma::mat image_tvl2_FD(arma::mat u0tmp, const double lambda, const double niter){
   // 1. initialize and setup
+  arma::mat u0 = u0tmp;
   const int M = u0.n_rows;
   const int N = u0.n_cols;
   const double h = 1.0;         // space discretization
@@ -70,7 +71,7 @@ arma::mat image_tvl2_FD(arma::mat& u0, const double lambda, const double niter){
 }
 
 
-arma::mat rcpp_imgradient_hor(arma::mat& u){
+arma::mat rcpp_imgradient_hor(arma::mat u){
   const int height = u.n_rows;
   const int width  = u.n_cols;
   arma::mat gradu(height,width,fill::zeros);
@@ -82,7 +83,7 @@ arma::mat rcpp_imgradient_hor(arma::mat& u){
   gradu = gradu - u;
   return(gradu);
 }
-arma::mat rcpp_imgradient_ver(arma::mat& u){
+arma::mat rcpp_imgradient_ver(arma::mat u){
   const int height = u.n_rows;
   const int width  = u.n_cols;
   arma::mat gradu(height,width,fill::zeros);
@@ -94,7 +95,7 @@ arma::mat rcpp_imgradient_ver(arma::mat& u){
   gradu = gradu - u;
   return(gradu);
 }
-arma::mat rcpp_pmax_matrix(arma::mat& u, double x){
+arma::mat rcpp_pmax_matrix(arma::mat u, double x){
   const int m = u.n_rows;
   const int n = u.n_cols;
   arma::mat output(m,n,fill::zeros);
@@ -117,8 +118,9 @@ arma::mat rcpp_pmax_matrix(arma::mat& u, double x){
 * Image 2. TV-L1 Primal Dual
 */
 // [[Rcpp::export]]
-arma::mat image_tvl1_primaldual(arma::mat& u, const double lambda, const double niter){
+arma::mat image_tvl1_primaldual(arma::mat utmp, const double lambda, const double niter){
   // 1. set parameters
+  arma::mat u = utmp;
   double L2 = 8.0;
   double tau = 0.02;
   double sigma = 1.0/(L2*tau);
@@ -196,8 +198,9 @@ arma::mat image_tvl1_primaldual(arma::mat& u, const double lambda, const double 
 * Image 3. TV-L2 Primal Dual
 */
 // [[Rcpp::export]]
-arma::mat image_tvl2_primaldual(arma::mat& u, const double lambda, const double niter){
+arma::mat image_tvl2_primaldual(arma::mat utmp, const double lambda, const double niter){
   // 1. set parameters
+  arma::mat u = utmp;
   double L2 = 8.0;
   double tau = 0.02;
   double sigma = 1.0/(L2*tau);
