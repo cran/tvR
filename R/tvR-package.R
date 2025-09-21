@@ -5,7 +5,7 @@
 #' essential structural details. For now, we provide tools for \emph{denoising} only on 1-dimensional signals or 2-dimensional images,
 #' where the latter be represented as 2d or 3d array.
 #'
-#' @docType package
+#' @noRd
 #' @name tvR-package
 #' @import Matrix
 #' @import Rdpack
